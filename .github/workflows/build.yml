@@ -1,0 +1,41 @@
+name: 构建屏保
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: 构建 ${{ matrix.arch }}
+    runs-on: macos-15
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [arm64, x86_64]
+    steps:
+      - uses: actions/checkout@v7
+      - name: 构建
+        run: ./build.sh "${{ matrix.arch }}"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: LiveNanjing-${{ matrix.arch }}
+          path: build/${{ matrix.arch }}/LiveNanjing-${{ matrix.arch }}.saver.zip
+
+  release:
+    if: github.ref_type == 'tag'
+    needs: build
+    runs-on: macos-15
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          path: dist
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v3
+        with:
+          generate_release_notes: true
+          files: dist/*.saver.zip

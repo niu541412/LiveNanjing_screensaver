@@ -1,0 +1,236 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* LiveNanjingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* LiveNanjingView.m */; };
+		A10000000000000000000002 /* LiveStreamService.m in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* LiveStreamService.m */; };
+		A10000000000000000000003 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* ScreenSaver.framework */; };
+		A10000000000000000000004 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20000000000000000000007 /* AVFoundation.framework */; };
+		A10000000000000000000005 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20000000000000000000008 /* QuartzCore.framework */; };
+		A10000000000000000000006 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* Security.framework */; };
+		A10000000000000000000007 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000A /* Cocoa.framework */; };
+		A10000000000000000000008 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000B /* thumbnail.png */; };
+		A10000000000000000000009 /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000C /* thumbnail@2x.png */; };
+		A1000000000000000000000A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000001 /* Localizable.strings */; };
+		A1000000000000000000000B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000002 /* InfoPlist.strings */; };
+		A1000000000000000000000C /* nanjing-boundaries.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000011 /* nanjing-boundaries.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A20000000000000000000001 /* LiveNanjingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveNanjingView.m; sourceTree = "<group>"; };
+		A20000000000000000000002 /* LiveStreamService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveStreamService.m; sourceTree = "<group>"; };
+		A20000000000000000000003 /* LiveNanjingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveNanjingView.h; sourceTree = "<group>"; };
+		A20000000000000000000004 /* LiveStreamService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveStreamService.h; sourceTree = "<group>"; };
+		A20000000000000000000005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A20000000000000000000006 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
+		A20000000000000000000007 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A20000000000000000000008 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A20000000000000000000009 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A2000000000000000000000A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A2000000000000000000000B /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
+		A2000000000000000000000C /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
+		A2000000000000000000000D /* zh-Hans Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A2000000000000000000000E /* zh-Hans InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A2000000000000000000000F /* LiveNanjing.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiveNanjing.saver; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000000000000000000010 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		A20000000000000000000011 /* nanjing-boundaries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "nanjing-boundaries.json"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A40000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000007 /* Cocoa.framework in Frameworks */,
+				A10000000000000000000003 /* ScreenSaver.framework in Frameworks */,
+				A10000000000000000000004 /* AVFoundation.framework in Frameworks */,
+				A10000000000000000000005 /* QuartzCore.framework in Frameworks */,
+				A10000000000000000000006 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A50000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A50000000000000000000002 /* LiveNanjing */,
+				A50000000000000000000003 /* Frameworks */,
+				A50000000000000000000004 /* Products */,
+				A20000000000000000000010 /* README.md */,
+			);
+			sourceTree = "<group>";
+		};
+		A50000000000000000000002 /* LiveNanjing */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000003 /* LiveNanjingView.h */,
+				A20000000000000000000001 /* LiveNanjingView.m */,
+				A20000000000000000000004 /* LiveStreamService.h */,
+				A20000000000000000000002 /* LiveStreamService.m */,
+				A20000000000000000000005 /* Info.plist */,
+				A50000000000000000000005 /* Resources */,
+				A30000000000000000000001 /* Localizable.strings */,
+				A30000000000000000000002 /* InfoPlist.strings */,
+			);
+			path = LiveNanjing;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000003 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A2000000000000000000000A /* Cocoa.framework */,
+				A20000000000000000000006 /* ScreenSaver.framework */,
+				A20000000000000000000007 /* AVFoundation.framework */,
+				A20000000000000000000008 /* QuartzCore.framework */,
+				A20000000000000000000009 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (A2000000000000000000000F /* LiveNanjing.saver */);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000005 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A2000000000000000000000B /* thumbnail.png */,
+				A2000000000000000000000C /* thumbnail@2x.png */,
+				A20000000000000000000011 /* nanjing-boundaries.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A60000000000000000000001 /* LiveNanjing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A70000000000000000000001 /* Target configurations */;
+			buildPhases = (
+				A40000000000000000000002 /* Sources */,
+				A40000000000000000000001 /* Frameworks */,
+				A40000000000000000000003 /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = LiveNanjing;
+			productName = LiveNanjing;
+			productReference = A2000000000000000000000F /* LiveNanjing.saver */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A80000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {LastUpgradeCheck = 1600;};
+			buildConfigurationList = A70000000000000000000002 /* Project configurations */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = ("zh-Hans", Base);
+			mainGroup = A50000000000000000000001;
+			productRefGroup = A50000000000000000000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (A60000000000000000000001 /* LiveNanjing */);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A40000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000008 /* thumbnail.png in Resources */,
+				A10000000000000000000009 /* thumbnail@2x.png in Resources */,
+				A1000000000000000000000A /* Localizable.strings in Resources */,
+				A1000000000000000000000B /* InfoPlist.strings in Resources */,
+				A1000000000000000000000C /* nanjing-boundaries.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A40000000000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* LiveNanjingView.m in Sources */,
+				A10000000000000000000002 /* LiveStreamService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A30000000000000000000001 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (A2000000000000000000000D /* zh-Hans Localizable.strings */);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A30000000000000000000002 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (A2000000000000000000000E /* zh-Hans InfoPlist.strings */);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A90000000000000000000001 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {
+			CLANG_ENABLE_OBJC_ARC = YES;
+			COMBINE_HIDPI_IMAGES = YES;
+			DEBUG_INFORMATION_FORMAT = dwarf;
+			INFOPLIST_FILE = LiveNanjing/Info.plist;
+			MACOSX_DEPLOYMENT_TARGET = 14.0;
+			PRODUCT_BUNDLE_IDENTIFIER = com.jomic.LiveNanjing;
+			PRODUCT_NAME = LiveNanjing;
+			WRAPPER_EXTENSION = saver;
+		}; name = Debug; };
+		A90000000000000000000002 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {
+			CLANG_ENABLE_OBJC_ARC = YES;
+			COMBINE_HIDPI_IMAGES = YES;
+			DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+			INFOPLIST_FILE = LiveNanjing/Info.plist;
+			MACOSX_DEPLOYMENT_TARGET = 14.0;
+			PRODUCT_BUNDLE_IDENTIFIER = com.jomic.LiveNanjing;
+			PRODUCT_NAME = LiveNanjing;
+			WRAPPER_EXTENSION = saver;
+		}; name = Release; };
+		A90000000000000000000003 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD)";
+			CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+			CLANG_ENABLE_MODULES = YES;
+			GCC_C_LANGUAGE_STANDARD = gnu17;
+			MACOSX_DEPLOYMENT_TARGET = 14.0;
+			SDKROOT = macosx;
+		}; name = Debug; };
+		A90000000000000000000004 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD)";
+			CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+			CLANG_ENABLE_MODULES = YES;
+			GCC_C_LANGUAGE_STANDARD = gnu17;
+			MACOSX_DEPLOYMENT_TARGET = 14.0;
+			SDKROOT = macosx;
+		}; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A70000000000000000000001 /* Target configurations */ = {isa = XCConfigurationList; buildConfigurations = (A90000000000000000000001, A90000000000000000000002); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		A70000000000000000000002 /* Project configurations */ = {isa = XCConfigurationList; buildConfigurations = (A90000000000000000000003, A90000000000000000000004); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = A80000000000000000000001 /* Project object */;
+}
