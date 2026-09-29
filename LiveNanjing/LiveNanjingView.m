@@ -6,6 +6,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 static NSString *const LNModuleName = @"com.jomic.LiveNanjing";
+static NSString *const LNWebsiteURL = @"https://m2.nbs.cn/eventlive/280714.html";
 static NSString *const LNModeKey = @"PlaybackMode";
 static NSString *const LNIntervalKey = @"SwitchIntervalMinutes";
 static NSString *const LNNameDisplayModeKey = @"NameDisplayMode";
@@ -639,6 +640,19 @@ static NSString *const LNForceBlackAndWhiteKey = @"ForceBlackAndWhite";
     self.blackAndWhiteButton.title = [self localized:@"ForceBlackAndWhite"];
     [content addSubview:self.blackAndWhiteButton];
 
+    NSButton *websiteButton = [[NSButton alloc] initWithFrame:NSMakeRect(268, 60, 140, 22)];
+    websiteButton.bordered = NO;
+    websiteButton.alignment = NSTextAlignmentRight;
+    websiteButton.focusRingType = NSFocusRingTypeNone;
+    websiteButton.attributedTitle = [[NSAttributedString alloc] initWithString:[self localized:@"WebsiteLink"] attributes:@{
+        NSFontAttributeName: [NSFont systemFontOfSize:12.0],
+        NSForegroundColorAttributeName: NSColor.linkColor,
+        NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+    }];
+    websiteButton.target = self;
+    websiteButton.action = @selector(openWebsite:);
+    [content addSubview:websiteButton];
+
     NSButton *cancel = [[NSButton alloc] initWithFrame:NSMakeRect(224, 20, 90, 32)];
     cancel.title = [self localized:@"Cancel"];
     cancel.bezelStyle = NSBezelStyleRounded;
@@ -657,6 +671,12 @@ static NSString *const LNForceBlackAndWhiteKey = @"ForceBlackAndWhite";
     self.configurationPanel = panel;
     [self loadConfigurationControls];
     return panel;
+}
+
+- (void)openWebsite:(id)sender
+{
+    (void)sender;
+    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:LNWebsiteURL]];
 }
 
 - (void)loadConfigurationControls

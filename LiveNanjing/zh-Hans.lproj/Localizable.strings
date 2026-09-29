@@ -10,6 +10,7 @@
 "MapDisplayLabel" = "显示地图及位置：";
 "Show" = "显示";
 "ForceBlackAndWhite" = "强制黑白";
+"WebsiteLink" = "Live南京网页";
 "StatusFetching" = "正在获取直播地点…";
 "StatusFindingNext" = "正在寻找下一个直播地点…";
 "StatusConnectingFormat" = "正在连接 %@…";
