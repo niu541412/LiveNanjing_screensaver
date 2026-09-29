@@ -609,7 +609,7 @@ static NSString *const LNForceBlackAndWhiteKey = @"ForceBlackAndWhite";
     [content addSubview:self.rotateButton];
 
     self.intervalPopup = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(255, 206, 120, 28) pullsDown:NO];
-    for (NSNumber *minutes in @[@5, @10, @15, @30]) {
+    for (NSNumber *minutes in @[@1, @5, @10, @15, @30]) {
         NSString *title = [NSString stringWithFormat:[self localized:@"MinutesFormat"], minutes.integerValue];
         [self.intervalPopup addItemWithTitle:title];
         self.intervalPopup.lastItem.representedObject = minutes;
