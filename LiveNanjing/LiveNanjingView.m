@@ -2,6 +2,7 @@
 
 #import "LiveStreamService.h"
 #import <AVFoundation/AVFoundation.h>
+#import <CoreImage/CoreImage.h>
 #import <QuartzCore/QuartzCore.h>
 
 static NSString *const LNModuleName = @"com.jomic.LiveNanjing";
@@ -10,6 +11,7 @@ static NSString *const LNIntervalKey = @"SwitchIntervalMinutes";
 static NSString *const LNNameDisplayModeKey = @"NameDisplayMode";
 static NSString *const LNLegacyShowNameKey = @"ShowStreamName";
 static NSString *const LNShowMapKey = @"ShowLocationMap";
+static NSString *const LNForceBlackAndWhiteKey = @"ForceBlackAndWhite";
 
 @interface LiveNanjingView ()
 @property(nonatomic, strong) LiveStreamService *streamService;
@@ -40,6 +42,7 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
 @property(nonatomic, strong, nullable) NSPopUpButton *intervalPopup;
 @property(nonatomic, strong, nullable) NSPopUpButton *nameDisplayPopup;
 @property(nonatomic, strong, nullable) NSButton *showMapButton;
+@property(nonatomic, strong, nullable) NSButton *blackAndWhiteButton;
 @end
 
 @implementation LiveNanjingView
@@ -58,6 +61,7 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
         LNIntervalKey: @10,
         LNNameDisplayModeKey: @"fade",
         LNShowMapKey: @YES,
+        LNForceBlackAndWhiteKey: @NO,
     }];
     [defaults synchronize];
 }
@@ -68,6 +72,7 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
     if (self) {
         self.animationTimeInterval = 1.0 / 30.0;
         self.wantsLayer = YES;
+        self.layerUsesCoreImageFilters = YES;
         self.layer.backgroundColor = NSColor.blackColor.CGColor;
         self.streamService = [[LiveStreamService alloc] init];
 
@@ -124,6 +129,25 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
 - (BOOL)showsLocationMap
 {
     return [[self defaults] boolForKey:LNShowMapKey];
+}
+
+- (BOOL)usesBlackAndWhiteVideo
+{
+    return [[self defaults] boolForKey:LNForceBlackAndWhiteKey];
+}
+
+- (NSArray<CIFilter *> *)videoFilters
+{
+    if (![self usesBlackAndWhiteVideo]) return @[];
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
+    [filter setValue:@0.0 forKey:kCIInputSaturationKey];
+    return filter ? @[filter] : @[];
+}
+
+- (void)applyVideoColorMode
+{
+    self.activeLayer.filters = [self videoFilters];
+    self.pendingLayer.filters = [self videoFilters];
 }
 
 - (void)setupMapOverlay
@@ -389,6 +413,7 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
     layer.frame = self.bounds;
     layer.opacity = 0.01;
     layer.zPosition = 1.0;
+    layer.filters = [self videoFilters];
     [self.layer addSublayer:layer];
 
     self.pendingStream = stream;
@@ -556,7 +581,7 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
 {
     if (self.configurationPanel) return self.configurationPanel;
 
-    NSRect frame = NSMakeRect(0, 0, 430, 275);
+    NSRect frame = NSMakeRect(0, 0, 430, 320);
     NSPanel *panel = [[NSPanel alloc] initWithContentRect:frame
                                                 styleMask:NSWindowStyleMaskTitled
                                                   backing:NSBackingStoreBuffered
@@ -564,9 +589,9 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
     panel.title = [self localized:@"SettingsTitle"];
     NSView *content = panel.contentView;
 
-    [content addSubview:[self labelWithTitle:[self localized:@"PlaybackLabel"] frame:NSMakeRect(24, 229, 380, 22)]];
+    [content addSubview:[self labelWithTitle:[self localized:@"PlaybackLabel"] frame:NSMakeRect(24, 274, 380, 22)]];
 
-    self.keepButton = [[NSButton alloc] initWithFrame:NSMakeRect(38, 196, 350, 24)];
+    self.keepButton = [[NSButton alloc] initWithFrame:NSMakeRect(38, 241, 350, 24)];
     self.keepButton.buttonType = NSButtonTypeRadio;
     self.keepButton.title = [self localized:@"KeepStream"];
     self.keepButton.target = self;
@@ -574,7 +599,7 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
     self.keepButton.tag = 0;
     [content addSubview:self.keepButton];
 
-    self.rotateButton = [[NSButton alloc] initWithFrame:NSMakeRect(38, 164, 210, 24)];
+    self.rotateButton = [[NSButton alloc] initWithFrame:NSMakeRect(38, 209, 210, 24)];
     self.rotateButton.buttonType = NSButtonTypeRadio;
     self.rotateButton.title = [self localized:@"RotateStream"];
     self.rotateButton.target = self;
@@ -582,7 +607,7 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
     self.rotateButton.tag = 1;
     [content addSubview:self.rotateButton];
 
-    self.intervalPopup = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(255, 161, 120, 28) pullsDown:NO];
+    self.intervalPopup = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(255, 206, 120, 28) pullsDown:NO];
     for (NSNumber *minutes in @[@5, @10, @15, @30]) {
         NSString *title = [NSString stringWithFormat:[self localized:@"MinutesFormat"], minutes.integerValue];
         [self.intervalPopup addItemWithTitle:title];
@@ -590,8 +615,8 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
     }
     [content addSubview:self.intervalPopup];
 
-    [content addSubview:[self labelWithTitle:[self localized:@"NameDisplayLabel"] frame:NSMakeRect(24, 125, 219, 22)]];
-    self.nameDisplayPopup = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(255, 121, 120, 28) pullsDown:NO];
+    [content addSubview:[self labelWithTitle:[self localized:@"NameDisplayLabel"] frame:NSMakeRect(24, 170, 219, 22)]];
+    self.nameDisplayPopup = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(255, 166, 120, 28) pullsDown:NO];
     NSArray<NSArray<NSString *> *> *nameModes = @[
         @[@"NameDisplayHidden", @"hidden"],
         @[@"NameDisplayAlways", @"always"],
@@ -603,11 +628,16 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
     }
     [content addSubview:self.nameDisplayPopup];
 
-    [content addSubview:[self labelWithTitle:[self localized:@"MapDisplayLabel"] frame:NSMakeRect(24, 84, 219, 22)]];
-    self.showMapButton = [[NSButton alloc] initWithFrame:NSMakeRect(255, 82, 120, 24)];
+    [content addSubview:[self labelWithTitle:[self localized:@"MapDisplayLabel"] frame:NSMakeRect(24, 129, 219, 22)]];
+    self.showMapButton = [[NSButton alloc] initWithFrame:NSMakeRect(255, 127, 120, 24)];
     self.showMapButton.buttonType = NSButtonTypeSwitch;
     self.showMapButton.title = [self localized:@"Show"];
     [content addSubview:self.showMapButton];
+
+    self.blackAndWhiteButton = [[NSButton alloc] initWithFrame:NSMakeRect(24, 86, 351, 24)];
+    self.blackAndWhiteButton.buttonType = NSButtonTypeSwitch;
+    self.blackAndWhiteButton.title = [self localized:@"ForceBlackAndWhite"];
+    [content addSubview:self.blackAndWhiteButton];
 
     NSButton *cancel = [[NSButton alloc] initWithFrame:NSMakeRect(224, 20, 90, 32)];
     cancel.title = [self localized:@"Cancel"];
@@ -650,6 +680,7 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
         }
     }
     self.showMapButton.state = [self showsLocationMap] ? NSControlStateValueOn : NSControlStateValueOff;
+    self.blackAndWhiteButton.state = [self usesBlackAndWhiteVideo] ? NSControlStateValueOn : NSControlStateValueOff;
 }
 
 - (void)playbackModeChanged:(NSButton *)sender
@@ -673,11 +704,13 @@ static NSString *const LNShowMapKey = @"ShowLocationMap";
     [defaults setInteger:[self.intervalPopup.selectedItem.representedObject integerValue] forKey:LNIntervalKey];
     [defaults setObject:self.nameDisplayPopup.selectedItem.representedObject forKey:LNNameDisplayModeKey];
     [defaults setBool:(self.showMapButton.state == NSControlStateValueOn) forKey:LNShowMapKey];
+    [defaults setBool:(self.blackAndWhiteButton.state == NSControlStateValueOn) forKey:LNForceBlackAndWhiteKey];
     [defaults synchronize];
     self.nextSwitchTime = CACurrentMediaTime() + [self switchInterval];
     [self updateNameOverlay];
     [self layoutLayers];
     [self showMapOverlayAndScheduleFade];
+    [self applyVideoColorMode];
     [NSApp endSheet:self.configurationPanel returnCode:NSModalResponseOK];
 }
 
