@@ -198,7 +198,7 @@
 			COMBINE_HIDPI_IMAGES = YES;
 			DEBUG_INFORMATION_FORMAT = dwarf;
 			INFOPLIST_FILE = LiveNanjing/Info.plist;
-			MACOSX_DEPLOYMENT_TARGET = 14.0;
+			MACOSX_DEPLOYMENT_TARGET = 10.13;
 			PRODUCT_BUNDLE_IDENTIFIER = com.jomic.LiveNanjing;
 			PRODUCT_NAME = LiveNanjing;
 			WRAPPER_EXTENSION = saver;
@@ -208,7 +208,7 @@
 			COMBINE_HIDPI_IMAGES = YES;
 			DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 			INFOPLIST_FILE = LiveNanjing/Info.plist;
-			MACOSX_DEPLOYMENT_TARGET = 14.0;
+			MACOSX_DEPLOYMENT_TARGET = 10.13;
 			PRODUCT_BUNDLE_IDENTIFIER = com.jomic.LiveNanjing;
 			PRODUCT_NAME = LiveNanjing;
 			WRAPPER_EXTENSION = saver;
@@ -218,7 +218,7 @@
 			CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 			CLANG_ENABLE_MODULES = YES;
 			GCC_C_LANGUAGE_STANDARD = gnu17;
-			MACOSX_DEPLOYMENT_TARGET = 14.0;
+			MACOSX_DEPLOYMENT_TARGET = 10.13;
 			SDKROOT = macosx;
 		}; name = Debug; };
 		A90000000000000000000004 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {
@@ -226,7 +226,7 @@
 			CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 			CLANG_ENABLE_MODULES = YES;
 			GCC_C_LANGUAGE_STANDARD = gnu17;
-			MACOSX_DEPLOYMENT_TARGET = 14.0;
+			MACOSX_DEPLOYMENT_TARGET = 10.13;
 			SDKROOT = macosx;
 		}; name = Release; };
 /* End XCBuildConfiguration section */
